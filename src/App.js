@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/HomePage/Home";
+import Reservation from "./components/ReservationPage/Reservation"; // Import your reservation page component
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./components/Forms/Login";
+import Register from "./components/Forms/Register";
+import AddTable from "./components/Forms/AddTable";
+import SelectTable from "./components/ReservationPage/selectTable";
+import AddReservation from "./components/ReservationPage/Reservation";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/add-table" element={<AddTable />} />
+          <Route path="/select-table" element={<SelectTable />} />
+          <Route path="/reservation/:tableId" element={<AddReservation />} />
+          <Route path="/reservation" element={<Reservation />} />
+
+          {/* Add more routes as needed */}
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
